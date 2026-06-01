@@ -1,14 +1,10 @@
-CC ?= gcc
-CFLAGS ?= -Wall -Werror -g
+CC=gcc
+CFLAGS=-Wall -Werror
 
-TARGET = aesdsocket
-SRCS = aesdsocket.c
+all: aesdsocket
 
-all: $(TARGET)
-default: all
-
-$(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS)
+aesdsocket: aesdsocket.c
+	$(CC) $(CFLAGS) aesdsocket.c -o aesdsocket
 
 clean:
-	rm -f $(TARGET)
+	rm -f aesdsocket *.o
