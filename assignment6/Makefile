@@ -1,5 +1,6 @@
 CC=gcc
-CFLAGS ?= -Wall -Werror -g -pthread
+CFLAGS += -Wall -Werror -g
+
 
 TARGET = aesdsocket
 SRCS = aesdsocket.c
