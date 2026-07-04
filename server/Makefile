@@ -1,10 +1,18 @@
-CC=gcc
-CFLAGS=-Wall -Werror
+CC ?= $(CROSS_COMPILE)gcc
+CFLAGS ?= -Wall -Werror -g -pthread
+LDFLAGS += -Wl,--hash-style=gnu
 
-all: aesdsocket
+TARGET = aesdsocket
+SRCS = aesdsocket.c
+OBJS = $(SRCS:.c=.o)
 
-aesdsocket: aesdsocket.c
-	$(CC) $(CFLAGS) aesdsocket.c -o aesdsocket
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f aesdsocket *.o
+	rm -f $(TARGET) $(OBJS)
