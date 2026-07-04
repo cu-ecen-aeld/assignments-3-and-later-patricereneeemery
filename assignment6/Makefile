@@ -1,6 +1,5 @@
-CC=gcc
+CC ?= ${CC}
 CFLAGS += -Wall -Werror -g
-
 
 TARGET = aesdsocket
 SRCS = aesdsocket.c
