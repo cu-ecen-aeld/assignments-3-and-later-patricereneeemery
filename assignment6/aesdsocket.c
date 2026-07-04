@@ -73,7 +73,10 @@ void daemonize(void)
     if (pid > 0) exit(EXIT_SUCCESS);
 
     umask(0);
-    chdir("/");
+    if (chdir("/") != 0) {
+        perror("chdir");
+    }
+
 
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
